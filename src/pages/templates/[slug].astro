@@ -1,0 +1,148 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/components/layout/BaseLayout.astro";
+import DevicePreview from "@/components/gallery/DevicePreview";
+import CollectionNav from "@/components/gallery/CollectionNav";
+import DeviceSwitch from "@/components/gallery/DeviceSwitch";
+import { safeUrl } from "@/lib/security";
+export async function getStaticPaths() {
+  return (await getCollection("templates")).map((t) => ({
+    params: { slug: t.data.slug },
+    props: { template: t.data },
+  }));
+}
+const { template: t } = Astro.props;
+const templates = (await getCollection("templates")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout
+  title={`${t.name} — Website template · Webplate`}
+  description={t.description}
+  workbench
+>
+  <header class="flex flex-wrap items-center justify-between gap-4 bg-bar px-4 py-4 text-bar-ink min-[900px]:px-7">
+    <div class="flex min-w-0 flex-wrap items-center gap-x-6 gap-y-1">
+      <a
+        href="/"
+        class="flex min-h-11 items-center gap-3 font-display text-xl font-bold"
+      >
+        <span aria-hidden="true">◫</span> Webplate
+      </a>
+      <span class="break-all font-mono text-xs text-bar-muted">
+        /templates/{t.slug}/
+      </span>
+    </div>
+    <div class="flex flex-wrap items-center gap-4">
+      <DeviceSwitch client:idle />
+      <a
+        href={safeUrl(`/contact/?template=${t.slug}`)}
+        class="inline-flex min-h-11 items-center gap-3 rounded-lg bg-hub-accent px-4 font-semibold text-hub-accent-ink"
+      >
+        Discuss your project <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </header>
+  <main id="main" class="flex min-w-0 flex-wrap items-stretch">
+    <nav
+      aria-label="Templates"
+      class="w-full min-w-0 border-b border-hub-line bg-hub-panel p-4 min-[900px]:w-[264px] min-[900px]:border-b-0 min-[900px]:border-r min-[900px]:p-6"
+    >
+      <a
+        href="/"
+        class="mb-4 hidden min-h-11 items-center text-[13px] text-hub-muted min-[900px]:flex"
+      >
+        ← All templates
+      </a>
+      <p class="mb-4 font-mono text-xs uppercase tracking-[.12em] text-hub-muted">
+        The collection / {String(templates.length).padStart(2, "0")}
+      </p>
+      <CollectionNav
+        templates={templates.map(({ data }) => ({
+          slug: data.slug,
+          name: data.name,
+          category: data.category,
+          accent: data.palette.accent,
+          feature: data.features[0],
+        }))}
+        current={t.slug}
+        client:load
+      />
+    </nav>
+    <div class="min-w-0 basis-full p-4 min-[900px]:basis-0 min-[900px]:flex-1 min-[900px]:p-6">
+      <div class="mb-6 flex items-center justify-between gap-3 font-mono text-xs uppercase tracking-[.12em] text-hub-muted">
+        <span>Live preview</span>
+        <span>Interactive demo</span>
+      </div>
+      <DevicePreview slug={t.slug} name={t.name} client:idle />
+    </div>
+    <aside
+      data-motion-reveal
+      aria-label="Template details"
+      class="w-full min-w-0 border-t border-hub-line bg-hub-panel p-6 min-[900px]:w-[300px] min-[900px]:border-l min-[900px]:border-t-0 min-[1360px]:w-[320px]"
+    >
+      <p class="mb-3 font-mono text-xs uppercase tracking-[.12em] text-hub-muted">
+        {t.category} template
+      </p>
+      <h1 class="font-display text-[30px] font-extrabold leading-[1.1]">
+        {t.name}
+      </h1>
+      <p class="mt-4 max-w-[65ch] text-hub-muted">{t.description}</p>
+      <p class="mt-4 rounded-lg border border-hub-line p-3 text-[13px] text-hub-muted">
+        {t.category === "systems"
+          ? "Frontend demo with session-only sample data. A production system needs separately scoped authentication, permissions, and a database."
+          : "Demonstration project with sample content. Forms and transactions are previews; live services are scoped for your project."}
+      </p>
+      <h2 class="mb-3 mt-9 font-semibold">Sections to explore</h2>
+      <ul class="flex flex-wrap gap-2">
+        {t.pages.map((p) => (
+          <li class="rounded-full border border-hub-line px-3 py-1 text-[13px]">
+            {p}
+          </li>
+        ))}
+      </ul>
+      <h2 class="mb-3 mt-9 font-semibold">Colors</h2>
+      <div class="flex flex-wrap gap-3">
+        {Object.entries(t.palette).map(([label, color]) => (
+          <div>
+            <span
+              class="block h-12 w-16 rounded-lg border border-hub-line"
+              style={`background:${color}`}
+              role="img"
+              aria-label={`${label}: ${color}`}
+            />
+            <span class="mt-2 block font-mono text-[11px] text-hub-muted">
+              {color}
+            </span>
+          </div>
+        ))}
+      </div>
+      <h2 class="mb-3 mt-9 font-semibold">Fonts</h2>
+      <p class="text-[13px] text-hub-muted">
+        {t.fonts.heading} / {t.fonts.body}
+      </p>
+      <section id="use-template" class="mt-9 border-t border-hub-line pt-6">
+        <h2 class="font-display text-[22px] font-bold">
+          Build this for your business
+        </h2>
+        <p class="mt-3 text-[13px] text-hub-muted">
+          Like this direction? I can tailor the design, content, and features to
+          your project.
+        </p>
+        <a
+          href={safeUrl(`/contact/?template=${t.slug}`)}
+          class="mt-4 inline-flex min-h-11 items-center rounded-lg bg-hub-accent px-4 text-[13px] font-semibold text-hub-accent-ink"
+        >
+          Discuss this project ↗
+        </a>
+        <a
+          href={safeUrl(`/demos/${t.slug}/`)}
+          class="mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg border border-hub-line bg-hub-surface px-4 text-[13px] font-semibold"
+        >
+          Explore full demo <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+    </aside>
+  </main>
+</BaseLayout>

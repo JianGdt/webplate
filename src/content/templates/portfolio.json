@@ -1,0 +1,19 @@
+{
+  "name": "Mara Reyes",
+  "slug": "portfolio",
+  "category": "creative",
+  "description": "A bold, personal canvas for your best work and your next opportunity.",
+  "pages": ["Selected work", "About", "Contact"],
+  "features": ["Projects", "Responsive", "Interactive"],
+  "palette": {
+    "bg": "#FFFFFF",
+    "ink": "#0B0B0D",
+    "accent": "#FF3B7A"
+  },
+  "fonts": {
+    "heading": "Geist",
+    "body": "Geist"
+  },
+  "featured": false,
+  "order": 4
+}

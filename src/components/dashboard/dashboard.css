@@ -1,0 +1,25 @@
+.dashboard {
+  color-scheme: light;
+  --muted: #F5F6FA;
+  --background: #f5f6fa;
+  --foreground: #182236;
+  --card: #ffffff;
+  --card-foreground: #182236;
+  --popover: #ffffff;
+  --popover-foreground: #182236;
+  --primary: #354de8;
+  --primary-foreground: #ffffff;
+  --secondary: #edf0ff;
+  --secondary-foreground: #354de8;
+  --muted-foreground: #626c7e;
+  --accent: #edf0ff;
+  --accent-foreground: #354de8;
+  --border: #e2e6ed;
+  --input: #d3d7e0;
+  --ring: #354de8;
+  --chart-1: #354de8;
+  --chart-2: #6880f2;
+  --chart-3: #99abf8;
+  --chart-4: #bbc8fc;
+  --chart-5: #dde4fe;
+}

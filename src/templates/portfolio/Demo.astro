@@ -1,0 +1,70 @@
+---
+import Projects from "./Projects";
+---
+
+<header class="mx-auto flex max-w-5xl items-center justify-between gap-4 border-b border-current/15 px-6 py-5">
+  <a
+    href="#main"
+    class="flex min-h-11 items-center font-serif text-2xl font-bold"
+  >
+    Mara Reyes
+  </a>
+  <nav aria-label="Demo navigation" class="flex flex-wrap gap-4 text-xs">
+    <a class="flex min-h-11 items-center" href="#explore">
+      Selected work
+    </a>
+    <a class="flex min-h-11 items-center" href="#about">
+      About
+    </a>
+  </nav>
+</header>
+<section
+  data-motion-reveal
+  class="mx-auto grid max-w-5xl items-center gap-8 px-6 py-12 md:grid-cols-2"
+>
+  <div>
+    <p class="text-[10px] uppercase tracking-[.2em]">
+      Available for select collaborations
+    </p>
+    <h1 class="mb-6 mt-5 font-serif text-5xl leading-[1.05] tracking-tight">
+      Making good things happen.
+    </h1>
+    <p class="max-w-md text-sm leading-7">
+      Independent designer and creative thinker based in Manila. Building
+      distinctive brands and thoughtful digital experiences.
+    </p>
+    <a
+      href="#explore"
+      class="mt-7 inline-flex min-h-11 items-center rounded-lg bg-t-accent px-5 text-sm text-t-accent-ink"
+    >
+      Explore selected work ↗
+    </a>
+  </div>
+  <div
+    aria-hidden="true"
+    class="flex h-72 items-center justify-center rounded-3xl bg-t-accent/10 text-8xl text-t-accent"
+  >
+    ✳
+  </div>
+</section>
+<section
+  data-motion-reveal
+  id="explore"
+  class="mx-auto max-w-5xl scroll-mt-6 px-6 py-12"
+>
+  <Projects client:visible={{ rootMargin: "200px" }} />
+</section>
+<section
+  data-motion-reveal
+  id="about"
+  class="mx-auto max-w-5xl border-t border-current/20 px-6 py-10"
+>
+  <h2 class="font-serif text-2xl">A little more about us</h2>
+  <p class="mt-4 max-w-xl text-sm leading-7">
+    I’m Mara, a Manila-based designer working at the intersection of identity
+    and digital. Good questions are where every great project starts.
+  </p>
+</section>
+<footer class="border-t border-current/15 px-6 py-6 text-center text-xs">
+  Mara Reyes · An interactive Template Hub demo
+</footer>

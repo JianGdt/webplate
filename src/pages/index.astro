@@ -1,11 +1,92 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { getCollection } from "astro:content";
+import BaseLayout from "@/components/layout/BaseLayout.astro";
+import TemplateCard from "@/components/gallery/TemplateCard.astro";
+import Services from "@/components/portfolio/Services.astro";
+import ProjectSteps from "@/components/portfolio/ProjectSteps.astro";
+import CategoryFilter from "@/components/gallery/CategoryFilter";
+const templates = (await getCollection("templates")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title="Webplate — Custom websites & business dashboards"
+  description="Explore website and dashboard demos by Webplate. Custom websites, storefronts, CMS, CRM, and inventory interfaces for your business."
+>
+  <main id="main" class="mx-auto max-w-[1600px] px-4 pt-12 md:px-12 md:pt-16">
+    <header
+      data-motion-reveal
+      class="flex flex-wrap items-end justify-between gap-9 pb-12"
+    >
+      <div class="min-w-0 max-w-[720px]">
+        <h1 class="max-w-[700px] text-balance font-display text-[44px] font-extrabold leading-none tracking-[-.03em] sm:text-[64px]">
+          A website that works for your business.
+        </h1>
+        <p class="mt-6 max-w-[65ch] text-[17px] leading-[1.55] text-hub-muted">
+          I build websites and business dashboards tailored to your goals.
+          Explore a demo, find a direction you like, and let’s make it yours.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a
+          data-motion-hover
+          href="/contact/"
+          class="inline-flex min-h-11 items-center gap-3 rounded-lg bg-hub-accent px-5 py-3 font-semibold text-hub-accent-ink"
+        >
+          Discuss your project <span aria-hidden="true">↗</span>
+        </a>
+        <a
+          href="#templates"
+          class="inline-flex min-h-11 items-center rounded-lg border border-hub-line px-5 py-3 font-semibold"
+        >
+          Explore the demos
+        </a>
+      </div>
+    </header>
+    <Services />
+    <section id="templates" aria-label="Templates">
+      <div class="mb-7 flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <p class="mb-3 font-mono text-xs uppercase tracking-[.12em] text-hub-muted">
+            {templates.length} interactive starting points
+          </p>
+          <h2 class="font-display text-3xl font-extrabold">
+            See what we could build
+          </h2>
+          <p class="mt-3 max-w-[65ch] text-hub-muted">
+            These are demonstration projects, ready to adapt to your branding,
+            content, and workflow.
+          </p>
+        </div>
+        <div class="max-w-[440px]">
+          <CategoryFilter client:idle />
+        </div>
+      </div>
+      <p class="mb-7 max-w-[85ch] rounded-xl border border-hub-line bg-hub-panel p-4 text-[13px] text-hub-muted">
+        Dashboard demos show frontend workflows with sample data. Accounts,
+        permissions, databases, payments, and integrations are scoped separately
+        for your project.
+      </p>
+      <div class="flex flex-wrap items-center justify-between gap-4 border-t border-hub-line py-6 font-mono text-xs text-hub-muted">
+        <p data-result-count role="status" aria-live="polite">
+          {templates.length} templates in All templates
+        </p>
+        <p>Sorted by curated order</p>
+      </div>
+      <div class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,300px),1fr))] gap-7">
+        {templates.map((t) => (
+          <TemplateCard template={t.data} />
+        ))}
+      </div>
+      <p
+        data-empty-result
+        hidden
+        class="rounded-xl border border-hub-line py-16 text-center text-hub-muted"
+      >
+        No templates in this category yet
+      </p>
+    </section>
+    <ProjectSteps />
+  </main>
+</BaseLayout>

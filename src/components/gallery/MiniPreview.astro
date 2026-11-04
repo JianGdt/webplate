@@ -1,0 +1,77 @@
+---
+import type { Template } from "@/lib/schemas/template";
+interface Props {
+  template: Template;
+}
+const { template: t } = Astro.props;
+---
+
+<div
+  class="preview-lift h-[210px] overflow-hidden rounded-xl border border-hub-line bg-t-bg p-4 text-t-ink"
+  style={`--t-bg:${t.palette.bg};--t-ink:${t.palette.ink};--t-accent:${t.palette.accent}`}
+  aria-hidden="true"
+>
+  <div class="flex items-center gap-1 border-b border-current/15 pb-3">
+    {[1, 2, 3].map(() => (
+      <span class="size-1.5 rounded-full bg-current/30" />
+    ))}
+    <span class="ml-3 text-[10px] font-semibold">{t.name}</span>
+    <span class="ml-auto h-1 w-6 rounded-full bg-current/20" />
+    <span class="ml-2 h-1 w-6 rounded-full bg-current/20" />
+  </div>
+  {t.category === "systems" ? (
+    <div class="flex gap-3 pt-3">
+      <div class="w-12 shrink-0 space-y-2 border-r border-current/10 pr-3">
+        {[1, 2, 3, 4].map(() => (
+          <div class="h-2 rounded bg-current/15" />
+        ))}
+      </div>
+      <div class="flex-1">
+        <div class="grid grid-cols-3 gap-2">
+          {[1, 2, 3].map(() => (
+            <div class="h-7 rounded border border-current/10 bg-t-accent/10" />
+          ))}
+        </div>
+        <div class="mt-3 flex h-16 items-end justify-between gap-2 border-b border-current/15">
+          {[35, 55, 42, 72, 58, 90, 75].map((h) => (
+            <span
+              class="flex-1 rounded-t bg-t-accent/70"
+              style={`height:${h}%`}
+            />
+          ))}
+        </div>
+        <div class="mt-3 h-2 rounded bg-current/10" />
+        <div class="mt-2 h-2 w-4/5 rounded bg-current/10" />
+      </div>
+    </div>
+  ) : (
+    <>
+      <div class="grid h-[115px] grid-cols-[1.2fr_1fr] items-center gap-6">
+        <div>
+          <div class="h-3 w-full rounded-sm bg-current/85" />
+          <div class="mt-2 h-3 w-4/5 rounded-sm bg-current/85" />
+          <div class="mt-3 h-1.5 w-full rounded-sm bg-current/25" />
+          <div class="mt-4 h-5 w-16 rounded bg-t-accent" />
+        </div>
+        <div
+          class:list={[
+            "flex h-[88px] items-center justify-center bg-t-accent/15",
+            t.slug === "healthcare" ? "rounded-t-full" : "rounded-lg",
+          ]}
+        >
+          <div
+            class:list={[
+              "size-12 bg-t-accent",
+              t.slug === "portfolio" ? "rotate-12 rounded-lg" : "rounded-full",
+            ]}
+          />
+        </div>
+      </div>
+      <div class="grid grid-cols-3 gap-3">
+        {[1, 2, 3].map(() => (
+          <div class="h-8 rounded bg-current/10" />
+        ))}
+      </div>
+    </>
+  )}
+</div>

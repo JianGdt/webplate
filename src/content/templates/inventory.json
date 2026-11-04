@@ -1,0 +1,19 @@
+{
+  "name": "Stockroom",
+  "slug": "inventory",
+  "category": "systems",
+  "description": "Track products, receive stock, and stay ahead of low inventory.",
+  "pages": ["Overview", "Products", "Movements"],
+  "features": ["Stock tracking", "shadcn charts", "GSAP motion"],
+  "palette": {
+    "bg": "#F5F6FA",
+    "ink": "#182236",
+    "accent": "#354DE8"
+  },
+  "fonts": {
+    "heading": "Geist",
+    "body": "Geist"
+  },
+  "featured": false,
+  "order": 8
+}

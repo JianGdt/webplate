@@ -1,0 +1,19 @@
+{
+  "name": "Content Studio",
+  "slug": "cms",
+  "category": "systems",
+  "description": "An editorial workspace for content, publishing, and audience insights.",
+  "pages": ["Overview", "Articles"],
+  "features": ["Publishing", "shadcn charts", "GSAP motion"],
+  "palette": {
+    "bg": "#F5F6FA",
+    "ink": "#182236",
+    "accent": "#354DE8"
+  },
+  "fonts": {
+    "heading": "Geist",
+    "body": "Geist"
+  },
+  "featured": false,
+  "order": 6
+}

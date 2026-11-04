@@ -1,0 +1,19 @@
+{
+  "name": "Care Desk",
+  "slug": "healthcare-dashboard",
+  "category": "systems",
+  "description": "A healthcare dashboard for appointments, clinic activity, and operational insights.",
+  "pages": ["Overview", "Appointments", "Analytics"],
+  "features": ["Clinic dashboard", "Charts", "shadcn UI"],
+  "palette": {
+    "bg": "#F5F6FA",
+    "ink": "#182236",
+    "accent": "#354DE8"
+  },
+  "fonts": {
+    "heading": "Geist",
+    "body": "Geist"
+  },
+  "featured": false,
+  "order": 9
+}

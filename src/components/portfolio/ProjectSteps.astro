@@ -1,0 +1,71 @@
+---
+import { portfolio } from "@/lib/portfolio";
+---
+
+<section
+  data-motion-reveal
+  aria-labelledby="process-heading"
+  class="mt-16 border-t border-hub-line pt-9"
+>
+  <p class="mb-3 font-mono text-xs uppercase tracking-[.12em] text-hub-muted">
+    From first conversation to launch
+  </p>
+  <h2 id="process-heading" class="font-display text-3xl font-extrabold">
+    A clear plan for your project
+  </h2>
+  <ol class="mt-7 grid gap-7 md:grid-cols-3">
+    {[
+      [
+        "01",
+        "Tell me what you need",
+        "Share your business, your goals, and a demo you like. An original idea is welcome too.",
+      ],
+      [
+        "02",
+        "Agree on the scope",
+        "We define the pages, features, timeline, and price before work begins.",
+      ],
+      [
+        "03",
+        "Build, review, and launch",
+        "Review the design and functionality, then prepare the agreed project for handoff or deployment.",
+      ],
+    ].map(([n, title, description]) => (
+      <li class="border-t border-hub-line pt-6">
+        <span class="font-mono text-xs text-hub-muted">{n}</span>
+        <h3 class="mt-3 font-display text-[22px] font-bold">{title}</h3>
+        <p class="mt-3 max-w-[65ch] text-hub-muted">{description}</p>
+      </li>
+    ))}
+  </ol>
+</section>
+<section
+  data-motion-reveal
+  class="mt-16 flex flex-wrap items-center justify-between gap-7 rounded-xl border border-hub-line bg-hub-panel p-6 md:p-9"
+  aria-labelledby="contact-heading"
+>
+  <div>
+    <p class="mb-3 font-mono text-xs uppercase tracking-[.12em] text-hub-muted">
+      Your idea, made useful
+    </p>
+    <h2 id="contact-heading" class="font-display text-3xl font-extrabold">
+      Have a project in mind?
+    </h2>
+    <p class="mt-3 max-w-[65ch] text-hub-muted">
+      Tell me what you want to build. Let's work out the right starting point.
+    </p>
+    <a
+      class="mt-3 inline-flex min-h-11 items-center break-all text-sm underline underline-offset-4"
+      href={`mailto:${portfolio.email}`}
+    >
+      {portfolio.email}
+    </a>
+  </div>
+  <a
+    data-motion-hover
+    href="/contact/"
+    class="inline-flex min-h-11 items-center gap-3 rounded-lg bg-hub-accent px-5 py-3 font-semibold text-hub-accent-ink"
+  >
+    Discuss your project <span aria-hidden="true">↗</span>
+  </a>
+</section>

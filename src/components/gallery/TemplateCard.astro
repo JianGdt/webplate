@@ -1,0 +1,52 @@
+---
+import MiniPreview from "./MiniPreview.astro";
+import type { Template } from "@/lib/schemas/template";
+import { safeUrl } from "@/lib/security";
+interface Props {
+  template: Template;
+}
+const { template: t } = Astro.props;
+---
+
+<article
+  data-motion-item
+  data-template-card
+  data-category={t.category}
+  class="group min-w-0"
+>
+  <a
+    href={safeUrl(`/templates/${t.slug}/`)}
+    data-astro-prefetch
+    class="block rounded-xl"
+    aria-label={`Preview ${t.name}`}
+  >
+    <MiniPreview template={t} />
+  </a>
+  <div class="pt-4">
+    <div class="flex items-baseline justify-between gap-3">
+      <h2 class="font-display text-[22px] font-bold leading-[1.2]">{t.name}</h2>
+      <span class="shrink-0 font-mono text-xs text-hub-muted">
+        {t.pages.length} pages
+      </span>
+    </div>
+    <p class="mt-2 truncate text-[13px] text-hub-muted" title={t.description}>
+      {t.description}
+    </p>
+    <div class="mt-4 flex flex-wrap items-center justify-between gap-2">
+      <div class="flex flex-wrap gap-2">
+        <span class="rounded-full border border-hub-line px-3 py-1 text-xs capitalize">
+          {t.category}
+        </span>
+        <span class="rounded-full border border-hub-line px-3 py-1 text-xs">
+          {t.features[0]}
+        </span>
+      </div>
+      <a
+        href={safeUrl(`/templates/${t.slug}/`)}
+        class="inline-flex min-h-11 items-center gap-2 rounded-lg bg-hub-accent px-3 text-[13px] font-semibold text-hub-accent-ink"
+      >
+        Explore demo <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,19 @@
+{
+  "name": "Kiln & Co.",
+  "slug": "ecommerce",
+  "category": "commerce",
+  "description": "A considered storefront for thoughtfully made things. Let your products do the talking.",
+  "pages": ["Shop", "Collection", "Cart"],
+  "features": ["Cart", "Responsive", "Interactive"],
+  "palette": {
+    "bg": "#E7ECFA",
+    "ink": "#18202C",
+    "accent": "#2B3FF0"
+  },
+  "fonts": {
+    "heading": "Geist",
+    "body": "Geist"
+  },
+  "featured": true,
+  "order": 0
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Tally",
+  "slug": "saas",
+  "category": "services",
+  "description": "Turn your next big idea into a clear, compelling product story.",
+  "pages": ["Overview", "Features", "Pricing"],
+  "features": ["Pricing", "Responsive", "Interactive"],
+  "palette": {
+    "bg": "#EDEFFC",
+    "ink": "#11183A",
+    "accent": "#3552F5"
+  },
+  "fonts": {
+    "heading": "Geist",
+    "body": "Geist"
+  },
+  "featured": false,
+  "order": 5
+}

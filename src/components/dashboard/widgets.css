@@ -1,0 +1,100 @@
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.dash-stat,
+.dash-panel {
+  background: var(--dash-surface);
+  border: 1px solid var(--dash-line);
+  border-radius: 12px;
+  padding: 24px;
+}
+.dash-stat p {
+  color: var(--dash-muted);
+  font-size: 12px;
+}
+.dash-stat strong {
+  display: block;
+  font-size: 30px;
+  letter-spacing: -1px;
+  margin: 12px 0 8px;
+  font-weight: 600;
+}
+.dash-stat small {
+  color: var(--dash-muted);
+  font-size: 11px;
+}
+.dash-panel {
+  margin-bottom: 24px;
+}
+.dash-panel-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.dash-panel-title h2 {
+  font-weight: 700;
+  font-size: 18px;
+}
+.dash-panel-title span {
+  font-size: 11px;
+  color: var(--dash-muted);
+}
+.dash-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: 24px;
+}
+.dash-chart svg {
+  display: block;
+  width: 100%;
+  max-height: 240px;
+  overflow: visible;
+}
+.chart-grid {
+  stroke: var(--dash-line);
+  stroke-dasharray: 4 5;
+}
+.chart-fill {
+  fill: var(--dash-soft);
+}
+.chart-line {
+  fill: none;
+  stroke: var(--dash-accent);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+.chart-dot,
+.chart-bar {
+  fill: var(--dash-accent);
+}
+.chart-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+.chart-labels button {
+  min-height: 44px;
+  flex: 1;
+  font-size: 11px;
+  color: var(--dash-muted);
+  border-radius: 6px;
+}
+.chart-labels button[aria-pressed="true"] {
+  background: var(--dash-soft);
+  color: var(--dash-accent);
+}
+.chart-labels span {
+  display: block;
+  font-size: 10px;
+}
+.chart-readout {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--dash-muted);
+}

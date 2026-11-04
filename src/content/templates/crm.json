@@ -1,0 +1,19 @@
+{
+  "name": "Relationships",
+  "slug": "crm",
+  "category": "systems",
+  "description": "A clear view of your contacts, opportunities, and sales pipeline.",
+  "pages": ["Overview", "Pipeline", "Contacts"],
+  "features": ["Sales pipeline", "shadcn charts", "GSAP motion"],
+  "palette": {
+    "bg": "#F5F6FA",
+    "ink": "#182236",
+    "accent": "#354DE8"
+  },
+  "fonts": {
+    "heading": "Geist",
+    "body": "Geist"
+  },
+  "featured": false,
+  "order": 7
+}

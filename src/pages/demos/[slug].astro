@@ -1,0 +1,48 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/components/layout/BaseLayout.astro";
+import Ecommerce from "@/templates/ecommerce/Demo.astro";
+import Blog from "@/templates/blog/Demo.astro";
+import Healthcare from "@/templates/healthcare/Demo.astro";
+import Restaurant from "@/templates/restaurant/Demo.astro";
+import Portfolio from "@/templates/portfolio/Demo.astro";
+import Saas from "@/templates/saas/Demo.astro";
+import Cms from "@/templates/cms/Demo.astro";
+import Crm from "@/templates/crm/Demo.astro";
+import HealthcareDashboard from "@/templates/healthcare-dashboard/Demo.astro";
+import Inventory from "@/templates/inventory/Demo.astro";
+export async function getStaticPaths() {
+  return (await getCollection("templates")).map((t) => ({
+    params: { slug: t.data.slug },
+    props: { template: t.data },
+  }));
+}
+const { template: t } = Astro.props;
+const demos = {
+  ecommerce: Ecommerce,
+  blog: Blog,
+  healthcare: Healthcare,
+  restaurant: Restaurant,
+  portfolio: Portfolio,
+  saas: Saas,
+  cms: Cms,
+  crm: Crm,
+  inventory: Inventory,
+  "healthcare-dashboard": HealthcareDashboard,
+};
+const Demo = demos[t.slug as keyof typeof demos];
+---
+
+<BaseLayout
+  title={`${t.name} · Interactive demo`}
+  description={t.description}
+  demo
+>
+  <main
+    id="main"
+    class="demo-theme min-h-screen bg-t-bg text-t-ink"
+    style={`--t-bg:${t.palette.bg};--t-ink:${t.palette.ink};--t-accent:${t.palette.accent};--t-heading:\"Geist Variable\";--t-accent-ink:${t.slug === "restaurant" ? t.palette.bg : t.slug === "healthcare" ? "black" : t.slug === "portfolio" ? t.palette.ink : "white"}`}
+  >
+    <Demo />
+  </main>
+</BaseLayout>

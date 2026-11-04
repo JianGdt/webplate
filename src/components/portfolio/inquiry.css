@@ -1,0 +1,32 @@
+.inquiry label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.inquiry :is(input, select, textarea) {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 12px;
+  border: 1px solid var(--hub-line);
+  border-radius: 8px;
+  background: var(--hub-surface);
+  color: var(--hub-ink);
+  font: inherit;
+}
+.inquiry textarea {
+  resize: vertical;
+}
+.inquiry [aria-invalid="true"] {
+  border: 2px solid var(--hub-ink);
+}
+.inquiry [role="alert"] {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.inquiry button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}

@@ -1,0 +1,95 @@
+---
+import "@/styles/global.css";
+import geistLatin from "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url";
+import PageMotion from "./PageMotion.astro";
+import { portfolio } from "@/lib/portfolio";
+import { env } from "@/lib/env";
+import { safeUrl } from "@/lib/security";
+interface Props {
+  title: string;
+  description: string;
+  demo?: boolean;
+  workbench?: boolean;
+}
+const { title, description, demo = false, workbench = false } = Astro.props;
+const canonical = safeUrl(
+  new URL(Astro.url.pathname, env.PUBLIC_SITE_URL || Astro.site).href,
+);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    {demo && <meta name="robots" content="noindex,nofollow" />}
+    <link
+      rel="preload"
+      href={geistLatin}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body class="min-w-0 bg-paper font-sans text-ink antialiased">
+    <a
+      class="fixed left-4 top-4 z-50 -translate-y-24 rounded bg-hub-accent p-3 text-hub-accent-ink focus:translate-y-0"
+      href="#main"
+    >
+      Skip to content
+    </a>
+    {!demo && !workbench && (
+      <header class="border-b border-hub-line">
+        <nav
+          aria-label="Main navigation"
+          class="mx-auto flex max-w-[1600px] flex-wrap items-center justify-between gap-4 px-4 py-4 md:px-12"
+        >
+          <a
+            href="/"
+            class="inline-flex min-h-11 items-center gap-3 font-display text-2xl font-extrabold"
+          >
+            <span aria-hidden="true" class="text-hub-accent">
+              ◫
+            </span>{" "}
+            {portfolio.name}
+          </a>
+          <div class="flex flex-wrap items-center gap-5 text-sm">
+            <a href="/#services" class="inline-flex min-h-11 items-center">
+              Services
+            </a>
+            <a href="/#templates" class="inline-flex min-h-11 items-center">
+              Demos
+            </a>
+            <a
+              href="/contact/"
+              class="inline-flex min-h-11 items-center rounded-lg bg-hub-accent px-4 font-semibold text-hub-accent-ink"
+            >
+              Discuss your project
+            </a>
+          </div>
+        </nav>
+      </header>
+    )}
+    <slot />
+    <PageMotion />
+    {!demo && !workbench && (
+      <footer class="mx-4 mt-16 flex flex-wrap justify-between gap-4 border-t border-hub-line py-6 font-mono text-xs text-hub-muted md:mx-12">
+        <a href="/" class="flex min-h-11 items-center">
+          {portfolio.name}
+        </a>
+        <p class="flex min-h-11 items-center">
+          Websites and dashboards, made for your business.
+        </p>
+      </footer>
+    )}
+  </body>
+</html>

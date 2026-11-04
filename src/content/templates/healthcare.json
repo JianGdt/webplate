@@ -1,0 +1,19 @@
+{
+  "name": "Mendoza Clinic",
+  "slug": "healthcare",
+  "category": "services",
+  "description": "A welcoming digital front door for care that puts people first.",
+  "pages": ["Care", "Book a visit", "Contact"],
+  "features": ["Booking", "Responsive", "Interactive"],
+  "palette": {
+    "bg": "#E4F3F5",
+    "ink": "#0D2A33",
+    "accent": "#0A8F97"
+  },
+  "fonts": {
+    "heading": "Geist",
+    "body": "Geist"
+  },
+  "featured": true,
+  "order": 2
+}

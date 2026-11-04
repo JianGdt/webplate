@@ -1,0 +1,19 @@
+{
+  "name": "Field Notes",
+  "slug": "blog",
+  "category": "content",
+  "description": "An editorial home for curious minds, slow stories, and fresh perspectives.",
+  "pages": ["Journal", "Topics", "Newsletter"],
+  "features": ["Newsletter", "Responsive", "Interactive"],
+  "palette": {
+    "bg": "#F4F4EF",
+    "ink": "#171717",
+    "accent": "#0B7A53"
+  },
+  "fonts": {
+    "heading": "Geist",
+    "body": "Geist"
+  },
+  "featured": false,
+  "order": 1
+}

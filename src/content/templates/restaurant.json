@@ -1,0 +1,19 @@
+{
+  "name": "Sinag Kitchen",
+  "slug": "restaurant",
+  "category": "services",
+  "description": "Bring the atmosphere of your table online with a rich, inviting restaurant experience.",
+  "pages": ["Home", "Menu", "Visit"],
+  "features": ["Menu tabs", "Responsive", "Interactive"],
+  "palette": {
+    "bg": "#1E1815",
+    "ink": "#F2E8DC",
+    "accent": "#E9A23B"
+  },
+  "fonts": {
+    "heading": "Geist",
+    "body": "Geist"
+  },
+  "featured": false,
+  "order": 3
+}

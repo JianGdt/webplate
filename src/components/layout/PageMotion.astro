@@ -1,0 +1,103 @@
+<page-motion aria-hidden="true" class="hidden"></page-motion>
+<script>
+  import { gsap } from "gsap";
+  class PageMotion extends HTMLElement {
+    private cleanup?: () => void;
+    connectedCallback() {
+      const media = gsap.matchMedia();
+      media.add("(prefers-reduced-motion: no-preference)", () => {
+        const context = gsap.context(() => {});
+        const targets = document.querySelectorAll<HTMLElement>(
+          "[data-motion-reveal]",
+        );
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const visible = entries.filter((entry) => entry.isIntersecting);
+            visible.forEach((entry, index) => {
+              observer.unobserve(entry.target);
+              if (entry.target.contains(document.activeElement)) return;
+              context.add(() => {
+                const timeline = gsap.timeline({
+                  defaults: {
+                    ease: "power3.out",
+                    clearProps: "transform,opacity",
+                  },
+                });
+                timeline.from(entry.target, {
+                  y: 28,
+                  duration: 0.65,
+                  delay: Math.min(index * 0.07, 0.21),
+                });
+                const heading = entry.target.querySelector("h1");
+                if (heading)
+                  timeline.from(heading, { y: 18, duration: 0.7 }, 0.08);
+                const children =
+                  entry.target.querySelectorAll("[data-motion-item]");
+                if (children.length)
+                  timeline.from(
+                    children,
+                    { y: 18, duration: 0.5, stagger: 0.07 },
+                    0.12,
+                  );
+              });
+            });
+          },
+          { threshold: 0.08 },
+        );
+        targets.forEach((target) => observer.observe(target));
+        return () => {
+          observer.disconnect();
+          context.revert();
+        };
+      });
+      media.add(
+        "(prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine)",
+        () => {
+          const context = gsap.context(() => {});
+          const selector =
+            "[data-template-card] > a:first-child, a[data-motion-hover]";
+          const animate = (event: Event, entering: boolean) => {
+            const target = (event.target as Element).closest<HTMLElement>(
+              selector,
+            );
+            if (
+              !target ||
+              (event instanceof MouseEvent &&
+                event.relatedTarget instanceof Node &&
+                target.contains(event.relatedTarget))
+            )
+              return;
+            context.add(() =>
+              gsap.to(target, {
+                y: entering ? -5 : 0,
+                duration: entering ? 0.3 : 0.55,
+                ease: entering ? "power2.out" : "elastic.out(1, 0.6)",
+                overwrite: true,
+                ...(!entering ? { clearProps: "transform" } : {}),
+              }),
+            );
+          };
+          const over = (event: Event) => animate(event, true);
+          const out = (event: Event) => animate(event, false);
+          document.addEventListener("pointerover", over);
+          document.addEventListener("pointerout", out);
+          document.addEventListener("focusin", over);
+          document.addEventListener("focusout", out);
+          return () => {
+            document.removeEventListener("pointerover", over);
+            document.removeEventListener("pointerout", out);
+            document.removeEventListener("focusin", over);
+            document.removeEventListener("focusout", out);
+            context.revert();
+          };
+        },
+      );
+      this.cleanup = () => media.revert();
+    }
+    disconnectedCallback() {
+      this.cleanup?.();
+    }
+  }
+  if (!customElements.get("page-motion"))
+    customElements.define("page-motion", PageMotion);
+</script>

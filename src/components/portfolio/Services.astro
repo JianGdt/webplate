@@ -1,0 +1,69 @@
+---
+const services = [
+  {
+    number: "01",
+    name: "Business websites",
+    description: "Give your business a clear, professional home online.",
+    details:
+      "Landing pages, service websites, portfolios, and content-led sites.",
+  },
+  {
+    number: "02",
+    name: "Stores & product websites",
+    description: "Help customers explore your products and take the next step.",
+    details:
+      "Product catalogs, storefront design, and shopping experiences tailored to your brand.",
+  },
+  {
+    number: "03",
+    name: "Business dashboards",
+    description: "Make everyday work easier to see and manage.",
+    details:
+      "CMS, CRM, and inventory interfaces shaped around your team's workflow.",
+  },
+];
+---
+
+<section
+  data-motion-reveal
+  id="services"
+  aria-labelledby="services-heading"
+  class="mb-16 border-t border-hub-line pt-9"
+>
+  <div class="mb-7 flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <p class="mb-3 font-mono text-xs uppercase tracking-[.12em] text-hub-muted">
+        Built around your business
+      </p>
+      <h2 id="services-heading" class="font-display text-3xl font-extrabold">
+        What I can build for you
+      </h2>
+    </div>
+    <a
+      data-motion-hover
+      href="/contact/"
+      class="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-hub-accent"
+    >
+      Discuss your project <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+  <div class="grid gap-7 md:grid-cols-3">
+    {services.map((service) => (
+      <article
+        data-motion-item
+        class="rounded-xl border border-hub-line bg-hub-panel p-6"
+      >
+        <span class="font-mono text-xs text-hub-muted">{service.number}</span>
+        <h3 class="mt-6 font-display text-[22px] font-bold">{service.name}</h3>
+        <p class="mt-3 max-w-[65ch] text-hub-ink">{service.description}</p>
+        <p class="mt-3 max-w-[65ch] text-[13px] leading-relaxed text-hub-muted">
+          {service.details}
+        </p>
+      </article>
+    ))}
+  </div>
+  <p class="mt-5 max-w-[65ch] text-[13px] text-hub-muted">
+    Start from a demo or bring your own idea. Branding, content, features, and
+    the final scope are tailored to your project.
+  </p>
+</section>
