@@ -142,10 +142,9 @@ test("tab switches keep existing metrics and charts visible", async ({
     "none",
   );
   await page.getByRole("button", { name: "Overview", exact: true }).click();
-  await expect(page.getByRole("img", { name: /^Pipeline value:/ })).toHaveCSS(
-    "clip-path",
-    "none",
-  );
+  await expect(
+    page.getByRole("img", { name: /^Value by stage in pesos:/ }),
+  ).toHaveCSS("clip-path", "none");
 });
 
 test("preview remains usable when browser storage is blocked", async ({
